@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import MatchBud from "../images/MatchBud.jpeg";
+import Logo from "../images/Logo.png"
 
-const Navbar = ({ minimal, setShowModal, showModal, setIsSignUp }) => {
+const Navbar = ({ authToken,minimal, setShowModal, showModal, setIsSignUp }) => {
   const handleClick = () => {
     setShowModal(true);
     setIsSignUp(false);
   };
 
-  const authToken = false;
+  
 
   return (
     <nav>

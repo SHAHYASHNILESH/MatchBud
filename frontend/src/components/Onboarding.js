@@ -21,6 +21,8 @@ const Onboarding = () => {
     matches: [],
   });
 
+  let navigate = useNavigate();
+
   const handleChange = (e) => {
     console.log("e", e);
     const value =
@@ -33,8 +35,19 @@ const Onboarding = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
     console.log("Submitted");
+    e.preventDefault();
+    try {
+      const response = await axios.put("http://localhost:8000/user", {
+        formData,
+      });
+      console.log(response);
+      const success = response.status === 200;
+      if (success) navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -192,7 +205,7 @@ const Onboarding = () => {
               required={true}
             />
             <div className="photo-container">
-              <img src={formData.url} alt="profile pic preview" />
+              {formData.url && <img src={formData.url} alt="profile pic preview" />}
             </div>
           </section>
         </form>
